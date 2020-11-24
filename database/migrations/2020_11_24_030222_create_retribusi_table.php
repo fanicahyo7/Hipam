@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRetribusisTable extends Migration
+class CreateRetribusiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,8 +16,10 @@ class CreateRetribusisTable extends Migration
         Schema::create('retribusis', function (Blueprint $table) {
             $table->bigIncrements('id_retribusi');
             $table->string('retribusi_name');
-            $table->integer('id_rw');
-
+	        $table->integer('tarif1');
+            $table->integer('tarif2');
+            $table->integer('abonemen');
+            $table->integer('kompensasi');
             $table->string('user_entry');
             $table->string('user_update')->nullable();
             $table->string('user_delete')->nullable();

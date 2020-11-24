@@ -18,6 +18,7 @@ return array(
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\RTController' => $baseDir . '/app/Http/Controllers/RTController.php',
     'App\\Http\\Controllers\\RWController' => $baseDir . '/app/Http/Controllers/RWController.php',
+    'App\\Http\\Controllers\\RetribusiController' => $baseDir . '/app/Http/Controllers/RetribusiController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',

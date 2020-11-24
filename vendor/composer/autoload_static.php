@@ -495,6 +495,7 @@ class ComposerStaticInitb1b71a152b0e5eaac96c73ae6b363706
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\RTController' => __DIR__ . '/../..' . '/app/Http/Controllers/RTController.php',
         'App\\Http\\Controllers\\RWController' => __DIR__ . '/../..' . '/app/Http/Controllers/RWController.php',
+        'App\\Http\\Controllers\\RetribusiController' => __DIR__ . '/../..' . '/app/Http/Controllers/RetribusiController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
