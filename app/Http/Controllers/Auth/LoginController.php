@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -20,7 +21,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+    protected $username;
     /**
      * Where to redirect users after login.
      *
@@ -28,13 +29,30 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    // /**
+    //  * Create a new controller instance.
+    //  *
+    //  * @return void
+    //  */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->username = $this->findUsername();
+    }
+
+    public function username()
+    {
+        return $this->username;
+    }
+
+    public function findUsername()
+    {
+        $login = request()->input('login');
+ 
+        $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+ 
+        request()->merge([$fieldType => $login]);
+ 
+        return $fieldType;
     }
 }
