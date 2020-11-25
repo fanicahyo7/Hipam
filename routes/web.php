@@ -14,12 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.welcome');
 });
 
 Auth::routes();
-// Auth::routes(['register'=> false, 'reset'=>false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', 'Admin\DashboardController@index')->name('admin');
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->middleware(['auth','admin'])
+    ->group(function(){
+        Route::get('/', 'DashboardController@index')
+            ->name('Dashboard');
+
+        Route::resource('retribusi', 'RetribusiController');
+    });

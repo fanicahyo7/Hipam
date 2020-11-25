@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Retribusi;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RetribusiController extends Controller
 {
@@ -13,7 +15,11 @@ class RetribusiController extends Controller
      */
     public function index()
     {
-        //
+        $item = Retribusi::all();
+
+        return view('pages.admin.retribusi.index',[
+            'items' => $item
+        ]);
     }
 
     /**
@@ -23,7 +29,7 @@ class RetribusiController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.retribusi.create');
     }
 
     /**
