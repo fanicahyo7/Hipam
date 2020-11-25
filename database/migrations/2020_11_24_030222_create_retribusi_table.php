@@ -14,7 +14,7 @@ class CreateRetribusiTable extends Migration
     public function up()
     {
         Schema::create('retribusis', function (Blueprint $table) {
-            $table->bigIncrements('id_retribusi');
+            $table->bigIncrements('id');
             $table->string('retribusi_name');
 	        $table->integer('tarif1');
             $table->integer('tarif2');

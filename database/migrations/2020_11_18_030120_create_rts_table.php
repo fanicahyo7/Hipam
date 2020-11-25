@@ -14,7 +14,8 @@ class CreateRtsTable extends Migration
     public function up()
     {
         Schema::create('rts', function (Blueprint $table) {
-            $table->bigIncrements('id_rt');
+            $table->bigIncrements('id');
+            $table->string('rt_name');
             $table->integer('id_rw');
             $table->string('user_entry');
             $table->string('user_update')->nullable();

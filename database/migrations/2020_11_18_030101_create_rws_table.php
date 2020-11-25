@@ -14,9 +14,9 @@ class CreateRwsTable extends Migration
     public function up()
     {
         Schema::create('rws', function (Blueprint $table) {
-            $table->bigIncrements('id_rw');
+            $table->bigIncrements('id');
             $table->string('rw_name');
-            $table->integer('id_retribution');
+            $table->integer('id_retribusi');
             $table->string('user_entry');
             $table->string('user_update')->nullable();
             $table->string('user_delete')->nullable();

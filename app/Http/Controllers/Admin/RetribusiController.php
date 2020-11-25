@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Retribusi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Admin\RetribusiRequest;
 
 class RetribusiController extends Controller
 {
@@ -38,9 +40,13 @@ class RetribusiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RetribusiRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['user_entry'] = Auth::user()->username;
+
+        Retribusi::create($data);
+        return redirect()->route('retribusi.index');
     }
 
     /**
@@ -60,9 +66,13 @@ class RetribusiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_retribusi)
     {
-        //
+        $item = Retribusi::findOrFail($id_retribusi);
+        
+        return view('pages.admin.retribusi.edit',[
+            'item' => $item
+        ]);
     }
 
     /**
@@ -72,9 +82,14 @@ class RetribusiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RetribusiRequest $request, $id_retribusi)
     {
-        //
+        $data = $request->all();
+        $data['user_update'] = Auth::user()->username;
+
+        $item = Retribusi::findOrFail($id_retribusi);
+        $item->update($data);
+        return redirect()->route('retribusi.index');
     }
 
     /**
@@ -85,6 +100,11 @@ class RetribusiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data['user_delete'] = Auth::user()->username;
+        $item = Retribusi::findOrFail($id);
+        $item->update($data);
+        $item->delete();
+
+        return redirect()->route('retribusi.index');
     }
 }

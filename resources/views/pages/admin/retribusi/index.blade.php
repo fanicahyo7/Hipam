@@ -29,17 +29,17 @@
                     <tbody>
                     @forelse($items as $item)
                         <tr>
-                            <td>{{ $item->id_retribusi }}</td>
+                            <td>{{ $item->id }}</td>
                             <td>{{ $item->retribusi_name }}</td>
                             <td>{{ $item->tarif1 }}</td>
                             <td>{{ $item->tarif2 }}</td>
                             <td>{{ $item->abonemen }}</td>
                             <td>{{ $item->kompensasi }}</td>
                             <td>
-                                <a href="{{ route('retribusi.edit', $item->id_retribusi) }}" class="btn btn-info">
+                                <a href="{{ route('retribusi.edit', $item->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
-                                <form action="{{ route('retribusi.destroy', $item->id_retribusi) }}" method="post" class="d-inline">
+                                <form action="{{ route('retribusi.destroy', $item->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">
