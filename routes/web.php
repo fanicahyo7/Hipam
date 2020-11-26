@@ -29,4 +29,5 @@ Route::prefix('admin')
             ->name('Dashboard');
 
         Route::resource('retribusi', 'RetribusiController');
+        Route::resource('rt', 'RtController');
     });

@@ -2,10 +2,10 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-        </div>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ '/admin' }}">
+        {{-- <div class="sidebar-brand-icon">
+            <img src="{{ url('backend/assets/kran.png') }}">
+        </div> --}}
         <div class="sidebar-brand-text mx-3">HIPAM Mojorejo</div>
     </a>
 
@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ '/admin' }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -32,7 +32,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Master:</h6>
-                <a class="collapse-item" href="#">RT</a>
+                <a class="collapse-item" href="{{ route('rt.index') }}">RT</a>
                 <a class="collapse-item" href="#">RW</a>
                 <a class="collapse-item" href="{{ route('retribusi.index') }}">Retribusi</a>
                 <a class="collapse-item" href="#">User</a>

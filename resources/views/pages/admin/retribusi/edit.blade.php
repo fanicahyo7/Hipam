@@ -30,19 +30,19 @@
                       </div>
                       <div class="form-group">
                           <label for="tarif1">Tarif 1</label>
-                          <input type="text" class="form-control" name="tarif1" placeholder="Tarif 1" value="{{ $item->tarif1 }}">
+                          <input type="number" class="form-control" name="tarif1" placeholder="Tarif 1" value="{{ $item->tarif1 }}">
                       </div>
                       <div class="form-group">
                           <label for="tarif2">Tarif 2</label>
-                          <input type="text" class="form-control" name="tarif2" placeholder="Tarif 2" value="{{ $item->tarif2 }}">
+                          <input type="number" class="form-control" name="tarif2" placeholder="Tarif 2" value="{{ $item->tarif2 }}">
                       </div>
                       <div class="form-group">
                           <label for="abonemen">Abonemen</label>
-                          <input type="text" class="form-control" name="abonemen" placeholder="Abonemen" value="{{ $item->abonemen }}">
+                          <input type="number" class="form-control" name="abonemen" placeholder="Abonemen" value="{{ $item->abonemen }}">
                       </div>
                       <div class="form-group">
                           <label for="kompensasi">Kompensasi</label>
-                          <input type="text" class="form-control" name="kompensasi" placeholder="Kompensasi" value="{{ $item->kompensasi }}">
+                          <input type="number" class="form-control" name="kompensasi" placeholder="Kompensasi" value="{{ $item->kompensasi }}">
                       </div>
                       <button type="submit" class="btn btn-primary btn-block">
                           Simpan

@@ -29,19 +29,19 @@
                       </div>
                       <div class="form-group">
                           <label for="tarif1">Tarif 1</label>
-                          <input type="text" class="form-control" name="tarif1" placeholder="Tarif 1" value="{{ old('tarif1') }}">
+                          <input type="number" class="form-control" name="tarif1" placeholder="Tarif 1" value="{{ old('tarif1') }}">
                       </div>
                       <div class="form-group">
                           <label for="tarif2">Tarif 2</label>
-                          <input type="text" class="form-control" name="tarif2" placeholder="Tarif 2" value="{{ old('tarif2') }}">
+                          <input type="number" class="form-control" name="tarif2" placeholder="Tarif 2" value="{{ old('tarif2') }}">
                       </div>
                       <div class="form-group">
                           <label for="abonemen">Abonemen</label>
-                          <input type="text" class="form-control" name="abonemen" placeholder="Abonemen" value="{{ old('abonemen') }}">
+                          <input type="number" class="form-control" name="abonemen" placeholder="Abonemen" value="{{ old('abonemen') }}">
                       </div>
                       <div class="form-group">
                           <label for="kompensasi">Kompensasi</label>
-                          <input type="text" class="form-control" name="kompensasi" placeholder="Kompensasi" value="{{ old('kompensasi') }}">
+                          <input type="number" class="form-control" name="kompensasi" placeholder="Kompensasi" value="{{ old('kompensasi') }}">
                       </div>
                       <button type="submit" class="btn btn-primary btn-block">
                           Simpan
