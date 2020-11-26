@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RetribusiRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,13 @@ class RetribusiRequest extends FormRequest
     public function rules()
     {
         return [
-            'retribusi_name' => 'required|unique:retribusis|max:255',
-            'tarif1' => 'required|integer',
-            'tarif2' => 'required|integer',
-            'abonemen' => 'required|integer',
-            'kompensasi' => 'required|integer',
+            'username' => 'required|unique:users|max:255',
+            'name' => 'required',
+            'password' => 'required',
+            'passwordnohash' => 'required',
+            'id_rt' => 'required',
+            'id_rw' => 'required',
+            'roles' => 'required'
         ];
     }
 }

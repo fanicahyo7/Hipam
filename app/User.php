@@ -39,4 +39,11 @@ class User extends Authenticatable
     // protected $casts = [
     //     'email_verified_at' => 'datetime',
     // ];
+
+    public function userrwrelasi(){
+        return $this->hasOne(Rw::class,'id','id_rw');
+    }
+    public function userrtrelasi(){
+        return $this->hasOne(Rt::class,'id','id_rt');
+    }
 }

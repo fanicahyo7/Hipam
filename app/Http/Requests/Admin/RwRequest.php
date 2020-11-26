@@ -24,7 +24,7 @@ class RwRequest extends FormRequest
     public function rules()
     {
         return [
-            'rw_name' => 'required|max:255',
+            'rw_name' => 'required|unique:rws|max:255',
             'id_retribusi' => 'required'
         ];
     }
