@@ -13,8 +13,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ '/admin' }}">
+    <li class="nav-item {{ set_active('dashboard') }}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -23,7 +23,7 @@
     <hr class="sidebar-divider">
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item {{ set_active(['rt.index','rw.index','retribusi.index']) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-folder"></i>
@@ -32,10 +32,10 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Master:</h6>
-                <a class="collapse-item" href="{{ route('rt.index') }}">RT</a>
-                <a class="collapse-item" href="#">RW</a>
-                <a class="collapse-item" href="{{ route('retribusi.index') }}">Retribusi</a>
-                <a class="collapse-item" href="#">User</a>
+                <a class="collapse-item {{ set_active(['rt.index']) }}" href="{{ route('rt.index') }}">RT</a>
+                <a class="collapse-item {{ set_active(['rw.index']) }}" href="{{ route('rw.index') }}">RW</a>
+                <a class="collapse-item {{ set_active(['retribusi.index']) }}" href="{{ route('retribusi.index') }}">Retribusi</a>
+                <a class="collapse-item {{ set_active([]) }}" href="#">User</a>
             </div>
         </div>
     </li>
@@ -66,7 +66,7 @@
         </a>
         <div id="collapseLaporan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Master:</h6>
+                <h6 class="collapse-header">Laporan:</h6>
                 <a class="collapse-item" href="buttons.html">Tagihan</a>
             </div>
         </div>

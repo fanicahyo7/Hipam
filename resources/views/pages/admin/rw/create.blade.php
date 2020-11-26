@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Ubah Data RT</h1>
+          <h1 class="h3 mb-0 text-gray-800">Tambah RW</h1>
         </div>
   
         <!-- Content Row -->
@@ -21,19 +21,18 @@
           @endif
           <div class="card shadow">
               <div class="card-body">
-                  <form action="{{ route('rt.update', $item->id) }}" method="post">
-                    @method('PUT')
+                  <form action="{{ route('rw.store') }}" method="post">
                       @csrf
-                      <div class="form-group">
-                        <label for="rt_name">Nama RT</label>
-                        <input type="text" class="form-control" name="rt_name" placeholder="Nama RT" value="{{ $item->rt_name }}">
+                    <div class="form-group">
+                        <label for="rw_name">Nama RW</label>
+                        <input type="text" class="form-control" name="rw_name" placeholder="Nama RW" value="{{ old('rw_name') }}">
                     </div>
                     <div class="form-group">
-                        <label for="id_rw">RW</label>
-                        <select name="id_rw" required class="form-control">
-                        <option value="{{ $item->id_rw }}">{{ $item->rtrwrelasi->rw_name }}</option>
-                          @foreach ($rws as $rw)
-                            <option value="{{ $rw->id }}">{{ $rw->rw_name }}</option>
+                        <label for="id_retribusi">Retribusi</label>
+                        <select name="id_retribusi" required class="form-control">
+                        <option value="">Pilih Retribusi</option>
+                          @foreach ($retribusis as $retribusi)
+                            <option value="{{ $retribusi->id }}">{{ $retribusi->retribusi_name }}</option>
                           @endforeach
                         </select>
                     </div>
