@@ -17,7 +17,9 @@ Route::get('/', function () {
     return view('pages.welcome');
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -31,4 +33,5 @@ Route::prefix('admin')
         Route::resource('retribusi', 'RetribusiController');
         Route::resource('rt', 'RtController');
         Route::resource('rw', 'RwController');
+        Route::resource('user', 'UserController');
     });

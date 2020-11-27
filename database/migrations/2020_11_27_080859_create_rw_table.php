@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRwsTable extends Migration
+class CreateRwTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,14 @@ class CreateRwsTable extends Migration
     public function up()
     {
         Schema::create('rws', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('rw_name');
+            $table->integer('id_rw');
             $table->integer('id_retribusi');
             $table->string('user_entry');
             $table->string('user_update')->nullable();
             $table->string('user_delete')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            $table->primary('id_rw');
         });
     }
 

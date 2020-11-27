@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('passwordnohash');
             $table->integer('id_rt');
             $table->integer('id_rw');
-            $table->string('roles')->default('USER');
+            $table->string('roles')->default('PELANGGAN');
             $table->string('user_entry');
             $table->string('user_update')->nullable();
             $table->string('user_delete')->nullable();

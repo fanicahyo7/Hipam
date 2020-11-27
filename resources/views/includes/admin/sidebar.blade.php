@@ -23,7 +23,7 @@
     <hr class="sidebar-divider">
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item {{ set_active(['rt.index','rw.index','retribusi.index']) }}">
+    <li class="nav-item {{ set_active(['rt.index','rt.edt','rw.index','rw.edit','retribusi.index','retribusi.edit','user.index','user.edit']) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-folder"></i>
@@ -35,7 +35,7 @@
                 <a class="collapse-item {{ set_active(['rt.index']) }}" href="{{ route('rt.index') }}">RT</a>
                 <a class="collapse-item {{ set_active(['rw.index']) }}" href="{{ route('rw.index') }}">RW</a>
                 <a class="collapse-item {{ set_active(['retribusi.index']) }}" href="{{ route('retribusi.index') }}">Retribusi</a>
-                <a class="collapse-item {{ set_active([]) }}" href="#">User</a>
+                <a class="collapse-item {{ set_active(['user.index']) }}" href="{{ route('user.index') }}">User</a>
             </div>
         </div>
     </li>

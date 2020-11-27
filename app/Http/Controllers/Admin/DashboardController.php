@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Rt;
+use App\Rw;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -12,9 +15,13 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('pages.admin.dashboard');
+        return view('pages.admin.dashboard',[
+            'user' => User::where('roles','PELANGGAN')->count(),
+            'rt' => Rt::count(),
+            'rw' => Rw::count()
+        ]);
     }
 
     /**

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2020 at 09:45 AM
+-- Generation Time: Nov 27, 2020 at 09:10 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -58,7 +58,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2020_11_18_030101_create_rws_table', 1),
 (5, '2020_11_18_030120_create_rts_table', 1),
-(6, '2020_11_24_030222_create_retribusi_table', 1);
+(6, '2020_11_24_030222_create_retribusi_table', 1),
+(7, '2020_11_27_034607_create_coba_table', 2),
+(8, '2020_11_27_040220_create_rt_table', 3),
+(9, '2020_11_27_040236_create_rw_table', 3),
+(10, '2020_11_27_040959_create_rt_table', 4),
+(11, '2020_11_27_041009_create_rw_table', 4),
+(12, '2020_11_27_080859_create_rw_table', 5);
 
 -- --------------------------------------------------------
 
@@ -107,8 +113,7 @@ INSERT INTO `retribusis` (`id`, `retribusi_name`, `tarif1`, `tarif2`, `abonemen`
 --
 
 CREATE TABLE `rts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `rt_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_rt` int(11) NOT NULL,
   `id_rw` int(11) NOT NULL,
   `user_entry` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -118,13 +123,6 @@ CREATE TABLE `rts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `rts`
---
-
-INSERT INTO `rts` (`id`, `rt_name`, `id_rw`, `user_entry`, `user_update`, `user_delete`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'RT 00', 1, 'Fani7', NULL, NULL, NULL, '2020-11-26 01:51:13', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -132,8 +130,7 @@ INSERT INTO `rts` (`id`, `rt_name`, `id_rw`, `user_entry`, `user_update`, `user_
 --
 
 CREATE TABLE `rws` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `rw_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_rw` int(11) NOT NULL,
   `id_retribusi` int(11) NOT NULL,
   `user_entry` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -142,13 +139,6 @@ CREATE TABLE `rws` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `rws`
---
-
-INSERT INTO `rws` (`id`, `rw_name`, `id_retribusi`, `user_entry`, `user_update`, `user_delete`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'RW 00', 1, 'Fani7', NULL, NULL, NULL, '2020-11-26 01:50:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -164,7 +154,7 @@ CREATE TABLE `users` (
   `passwordnohash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_rt` int(11) NOT NULL,
   `id_rw` int(11) NOT NULL,
-  `roles` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'USER',
+  `roles` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PELANGGAN',
   `user_entry` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_delete` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -213,13 +203,13 @@ ALTER TABLE `retribusis`
 -- Indexes for table `rts`
 --
 ALTER TABLE `rts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_rt`,`id_rw`);
 
 --
 -- Indexes for table `rws`
 --
 ALTER TABLE `rws`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_rw`);
 
 --
 -- Indexes for table `users`
@@ -242,7 +232,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `retribusis`
@@ -251,22 +241,10 @@ ALTER TABLE `retribusis`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `rts`
---
-ALTER TABLE `rts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `rws`
---
-ALTER TABLE `rws`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

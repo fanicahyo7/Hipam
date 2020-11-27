@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>HIPAM Mojorejo - Dashboard</title>
+    <title>HIPAM Mojorejo</title>
 
     @include('includes.admin.style')
 

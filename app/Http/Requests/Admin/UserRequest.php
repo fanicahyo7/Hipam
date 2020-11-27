@@ -27,7 +27,6 @@ class UserRequest extends FormRequest
             'username' => 'required|unique:users|max:255',
             'name' => 'required',
             'password' => 'required',
-            'passwordnohash' => 'required',
             'id_rt' => 'required',
             'id_rw' => 'required',
             'roles' => 'required'

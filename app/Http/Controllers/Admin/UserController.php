@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\UserRequest;
 
 
@@ -51,9 +52,11 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
+        $data['password'] = Hash::make($request['password']);
+        $data['passwordnohash'] = $request['password'];
         $data['user_entry'] = Auth::user()->username;
 
-        Rw::create($data);
+        User::create($data);
         return redirect()->route('user.index');
     }
 

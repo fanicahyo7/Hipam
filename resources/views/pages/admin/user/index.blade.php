@@ -30,8 +30,11 @@
                     @forelse($items as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->rw_name }}</td>
-                            <td>{{ $item->rwretribusirelasi->retribusi_name }}</td>
+                            <td>{{ $item->username }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->userrtrelasi->rt_name }}</td>
+                            <td>{{ $item->userrwrelasi->rw_name }}</td>
+                            <td>{{ $item->roles }}</td>
                             <td>
                                 <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
@@ -43,7 +46,6 @@
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>
-
                             </td>
                         </tr>
                     @empty

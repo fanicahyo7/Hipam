@@ -37,7 +37,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Anggota</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $user }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -55,7 +55,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total RT
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $rt }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-user-friends fa-2x text-gray-300"></i>
@@ -73,7 +73,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                     Total RW</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $rw }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-users fa-2x text-gray-300"></i>
