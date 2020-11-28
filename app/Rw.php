@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Rw extends Model
 {
     use SoftDeletes;
-    
+    protected $primaryKey = 'id_rw';
     protected $fillable = [
-        'rw_name', 'id_retribusi', 'user_entry', 'user_update', 'user_delete'
+        'id_rw', 'id_retribusi', 'user_entry', 'user_update', 'user_delete'
     ];
 
     public function rwretribusirelasi(){

@@ -17,8 +17,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>ID RW</th>
-                        <th>Nama RW</th>
+                        <th>RW</th>
                         <th>Retribusi</th>
                         <th>Action</th>
                     </tr>
@@ -26,14 +25,13 @@
                     <tbody>
                     @forelse($items as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->rw_name }}</td>
+                            <td>{{ $item->id_rw }}</td>
                             <td>{{ $item->rwretribusirelasi->retribusi_name }}</td>
                             <td>
-                                <a href="{{ route('rw.edit', $item->id) }}" class="btn btn-info">
+                                <a href="{{ route('rw.edit', $item->id_rw) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
-                                <form action="{{ route('rw.destroy', $item->id) }}" method="post" class="d-inline">
+                                <form action="{{ route('rw.destroy', $item->id_rw) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">

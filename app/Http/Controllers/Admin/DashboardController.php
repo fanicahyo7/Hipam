@@ -19,8 +19,8 @@ class DashboardController extends Controller
     {
         return view('pages.admin.dashboard',[
             'user' => User::where('roles','PELANGGAN')->count(),
-            'rt' => Rt::count(),
-            'rw' => Rw::count()
+            'rt' => Rt::where('id_rt','!=',0)->count(),
+            'rw' => Rw::where('id_rw','!=',0)->count()
         ]);
     }
 

@@ -18,7 +18,7 @@ class RwController extends Controller
      */
     public function index()
     {
-        $item = Rw::with(['rwretribusirelasi'])->get();
+        $item = Rw::with(['rwretribusirelasi'])->where('id_rw','!=',0)->get();
 
         return view('pages.admin.rw.index',[
             'items' => $item
@@ -32,7 +32,7 @@ class RwController extends Controller
      */
     public function create()
     {
-        $retribusis = Retribusi::all();
+        $retribusis = Retribusi::where('id','!=',1)->get();
         return view('pages.admin.rw.create',[
             'retribusis' => $retribusis
         ]);
@@ -70,10 +70,10 @@ class RwController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_rw)
     {
-        $retribusis = Retribusi::all();
-        $item = Rw::with(['rwretribusirelasi'])->findOrFail($id);
+        $retribusis = Retribusi::where('id','!=',1)->get();
+        $item = Rw::with(['rwretribusirelasi'])->findOrFail($id_rw);
         
         return view('pages.admin.rw.edit',[
             'item' => $item,

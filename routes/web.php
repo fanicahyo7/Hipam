@@ -29,9 +29,16 @@ Route::prefix('admin')
     ->group(function(){
         Route::get('/', 'DashboardController@index')
             ->name('dashboard');
-
         Route::resource('retribusi', 'RetribusiController');
+
         Route::resource('rt', 'RtController');
+
+        Route::get('rt_ubah/{id_rt}/id_rw/{id_rw}','RtController@edit')
+        ->name('rt_ubah');
+        Route::get('rt_hapus/{id_rt}/id_rw/{id_rw}','RtController@destroy')
+        ->name('rt_hapus');
+
+
         Route::resource('rw', 'RwController');
         Route::resource('user', 'UserController');
     });

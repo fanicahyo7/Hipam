@@ -24,7 +24,7 @@ class RtRequest extends FormRequest
     public function rules()
     {
         return [
-            'rt_name' => 'required|max:255',
+            'id_rt' => 'required',
             'id_rw' => 'required'
         ];
     }

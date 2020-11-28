@@ -41,9 +41,9 @@ class User extends Authenticatable
     // ];
 
     public function userrwrelasi(){
-        return $this->hasOne(Rw::class,'id','id_rw');
+        return $this->hasOne(Rw::class,'id_rw','id_rw');
     }
     public function userrtrelasi(){
-        return $this->hasOne(Rt::class,'id','id_rt');
+        return $this->hasOne(Rt::class,'id_rt','id_rt');
     }
 }

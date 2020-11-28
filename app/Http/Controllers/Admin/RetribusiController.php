@@ -17,7 +17,7 @@ class RetribusiController extends Controller
      */
     public function index()
     {
-        $item = Retribusi::all();
+        $item = Retribusi::where('id','!=',1)->get();
 
         return view('pages.admin.retribusi.index',[
             'items' => $item

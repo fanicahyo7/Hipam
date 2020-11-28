@@ -21,19 +21,19 @@
           @endif
           <div class="card shadow">
               <div class="card-body">
-                  <form action="{{ route('rt.update', $item->id) }}" method="post">
+                  <form action="{{ route('rt.update', $item->id_rt) }}" method="post">
                     @method('PUT')
                       @csrf
                       <div class="form-group">
-                        <label for="rt_name">Nama RT</label>
-                        <input type="text" class="form-control" name="rt_name" placeholder="Nama RT" value="{{ $item->rt_name }}">
+                        <label for="id_rt">RT</label>
+                        <input type="number" readonly class="form-control" name="id_rt" placeholder="RT" value="{{ $item->id_rt }}">
                     </div>
                     <div class="form-group">
                         <label for="id_rw">RW</label>
                         <select name="id_rw" required class="form-control">
-                        <option value="{{ $item->id_rw }}">{{ $item->rtrwrelasi->rw_name }}</option>
+                        <option value="{{ $item->id_rw }}">{{ $item->rtrwrelasi->id_rw }}</option>
                           @foreach ($rws as $rw)
-                            <option value="{{ $rw->id }}">{{ $rw->rw_name }}</option>
+                            <option value="{{ $rw->id_rw }}">{{ $rw->id_rw }}</option>
                           @endforeach
                         </select>
                     </div>

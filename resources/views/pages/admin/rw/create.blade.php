@@ -24,8 +24,8 @@
                   <form action="{{ route('rw.store') }}" method="post">
                       @csrf
                     <div class="form-group">
-                        <label for="rw_name">Nama RW</label>
-                        <input type="text" class="form-control" name="rw_name" placeholder="Nama RW" value="{{ old('rw_name') }}">
+                        <label for="id_rw">RW</label>
+                        <input type="number" class="form-control" name="id_rw" placeholder="RW" value="{{ old('id_rw') }}">
                     </div>
                     <div class="form-group">
                         <label for="id_retribusi">Retribusi</label>

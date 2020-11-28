@@ -35,8 +35,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $rts = Rt::all();
-        $rws = Rw::all();
+        $rts = Rt::where('id_rt','!=',0)->get();
+        $rws = Rw::where('id_rw','!=',0)->get();
         return view('pages.admin.user.create',[
             'rts' => $rts,
             'rws' => $rws
@@ -81,6 +81,8 @@ class UserController extends Controller
     {
         $rts = Rt::all();
         $rws = Rw::all();
+        // $rts = Rt::where('id_rt','!=',0)->get();
+        // $rws = Rw::where('id_rw','!=',0)->get();
         $item = User::with(['userrwrelasi','userrtrelasi'])->findOrFail($id);
         
         return view('pages.admin.user.edit',[

@@ -24,15 +24,15 @@
                   <form action="{{ route('rt.store') }}" method="post">
                       @csrf
                     <div class="form-group">
-                        <label for="rt_name">Nama RT</label>
-                        <input type="text" class="form-control" name="rt_name" placeholder="Nama RT" value="{{ old('rt_name') }}">
+                        <label for="id_rt">RT</label>
+                        <input type="text" class="form-control" name="id_rt" placeholder="Nama RT" value="{{ old('id_rt') }}">
                     </div>
                     <div class="form-group">
                         <label for="id_rw">RW</label>
                         <select name="id_rw" required class="form-control">
                         <option value="">Pilih RW</option>
                           @foreach ($rws as $rw)
-                            <option value="{{ $rw->id }}">{{ $rw->rw_name }}</option>
+                            <option value="{{ $rw->id_rw }}">{{ $rw->id_rw }}</option>
                           @endforeach
                         </select>
                     </div>

@@ -32,8 +32,8 @@
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->userrtrelasi->rt_name }}</td>
-                            <td>{{ $item->userrwrelasi->rw_name }}</td>
+                            <td>{{ $item->id_rt }}</td>
+                            <td>{{ $item->id_rw }}</td>
                             <td>{{ $item->roles }}</td>
                             <td>
                                 <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info">

@@ -18,7 +18,7 @@ class RtController extends Controller
      */
     public function index()
     {
-        $item = Rt::with(['rtrwrelasi'])->get();
+        $item = Rt::with(['rtrwrelasi'])->where('id_rt','!=',0)->get();
 
         return view('pages.admin.rt.index',[
             'items' => $item
@@ -32,7 +32,7 @@ class RtController extends Controller
      */
     public function create()
     {
-        $rws = Rw::all();
+        $rws = Rw::where('id_rw','!=',0)->get();
         return view('pages.admin.rt.create',[
             'rws' => $rws
         ]);
@@ -49,8 +49,27 @@ class RtController extends Controller
         $data = $request->all();
         $data['user_entry'] = Auth::user()->username;
 
-        Rt::create($data);
-        return redirect()->route('rt.index');
+        $jml = Rt::where('id_rt','=',$request['id_rt'])
+        ->where('id_rw','=',$request['id_rw'])
+        ->count();
+
+        $jmlsampah = Rt::onlyTrashed()->where('id_rt','=',$request['id_rt'])
+        ->where('id_rw','=',$request['id_rw'])
+        ->count();
+
+        if ($jmlsampah != 0){
+            $sampah = Rt::onlyTrashed()->where('id_rt','=',$request['id_rt'])
+                    ->where('id_rw','=',$request['id_rw']);
+            $sampah->restore();
+            return redirect()->route('rt.index');
+        }
+
+        if ($jml <= 0){
+            Rt::create($data);
+            return redirect()->route('rt.index');
+        }else{
+            return redirect()->back()->withErrors(['Duplicate Data']);
+        }
     }
 
     /**
@@ -70,10 +89,11 @@ class RtController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_rt,$id_rw)
     {
-        $rws = Rw::all();
-        $item = Rt::with(['rtrwrelasi'])->findOrFail($id);
+        $rws = Rw::where('id_rw','!=',0)->get();
+        $item = Rt::with(['rtrwrelasi'])->where('id_rt','=',$id_rt)
+        ->where('id_rw','=',$id_rw)->first();
         
         return view('pages.admin.rt.edit',[
             'item' => $item,
@@ -93,9 +113,30 @@ class RtController extends Controller
         $data = $request->all();
         $data['user_update'] = Auth::user()->username;
 
-        $item = Rt::findOrFail($id);
-        $item->update($data);
-        return redirect()->route('rt.index');
+        $item = Rt::where('id_rt','=',$request['id_rt'])
+        ->where('id_rw','=',$request['id_rw'])->first();
+
+        $jml = Rt::where('id_rt','=',$request['id_rt'])
+                ->where('id_rw','=',$request['id_rw'])
+                ->count();
+
+        $jmlsampah = Rt::onlyTrashed()->where('id_rt','=',$request['id_rt'])
+                ->where('id_rw','=',$request['id_rw'])
+                ->count();
+
+        if ($jmlsampah != 0){
+            $sampah = Rt::onlyTrashed()->where('id_rt','=',$request['id_rt'])
+                    ->where('id_rw','=',$request['id_rw']);
+            $sampah->restore();
+            return redirect()->route('rt.index');
+        }
+
+        if ($jml <= 0){
+            $item->update($data);
+            return redirect()->route('rt.index');
+        }else{
+            return redirect()->back()->withErrors(['Duplicate Data']);
+        }
     }
 
     /**
@@ -104,10 +145,11 @@ class RtController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_rt,$id_rw)
     {
         $data['user_delete'] = Auth::user()->username;
-        $item = Rt::findOrFail($id);
+        $item = Rt::where('id_rt','=',$id_rt)
+                ->where('id_rw','=',$id_rw);
         $item->update($data);
         $item->delete();
 

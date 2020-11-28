@@ -39,18 +39,18 @@
                     <div class="form-group">
                         <label for="id_rt">RT</label>
                         <select name="id_rt" required class="form-control">
-                        <option value="{{ $item->id_rt }}">{{ $item->userrtrelasi->rt_name }}</option>
+                        <option value="{{ $item->id_rt }}">{{ $item->id_rt }}</option>
                           @foreach ($rts as $rt)
-                            <option value="{{ $rt->id }}">{{ $rt->rt_name }}</option>
+                            <option value="{{ $rt->id }}">{{ $rt->id_rt }}</option>
                           @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="id_rw">RW</label>
                         <select name="id_rw" required class="form-control">
-                          <option value="{{ $item->id_rw }}">{{ $item->userrwrelasi->rw_name }}</option>
+                          <option value="{{ $item->id_rw }}">{{ $item->id_rw }}</option>
                           @foreach ($rws as $rw)
-                            <option value="{{ $rw->id }}">{{ $rw->rw_name }}</option>
+                            <option value="{{ $rw->id }}">{{ $rw->id_rw }}</option>
                           @endforeach
                         </select>
                     </div>
