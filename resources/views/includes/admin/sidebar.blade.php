@@ -23,7 +23,7 @@
     <hr class="sidebar-divider">
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item {{ set_active(['rt.index','rt.edt','rw.index','rw.edit','retribusi.index','retribusi.edit','user.index','user.edit']) }}">
+    <li class="nav-item {{ set_active(['rt.index','rt.edit','rt.create','rw.index','rw.edit','rw.create','retribusi.index','retribusi.edit','retribusi.create','user.index','user.edit','user.create']) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-folder"></i>
