@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2020 at 09:10 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Waktu pembuatan: 28 Nov 2020 pada 10.17
+-- Versi server: 10.4.13-MariaDB
+-- Versi PHP: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Struktur dari tabel `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -39,7 +39,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktur dari tabel `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -49,7 +49,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Dumping data untuk tabel `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -69,7 +69,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Struktur dari tabel `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -81,7 +81,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `retribusis`
+-- Struktur dari tabel `retribusis`
 --
 
 CREATE TABLE `retribusis` (
@@ -100,7 +100,7 @@ CREATE TABLE `retribusis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `retribusis`
+-- Dumping data untuk tabel `retribusis`
 --
 
 INSERT INTO `retribusis` (`id`, `retribusi_name`, `tarif1`, `tarif2`, `abonemen`, `kompensasi`, `user_entry`, `user_update`, `user_delete`, `deleted_at`, `created_at`, `updated_at`) VALUES
@@ -109,7 +109,7 @@ INSERT INTO `retribusis` (`id`, `retribusi_name`, `tarif1`, `tarif2`, `abonemen`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rts`
+-- Struktur dari tabel `rts`
 --
 
 CREATE TABLE `rts` (
@@ -123,10 +123,17 @@ CREATE TABLE `rts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `rts`
+--
+
+INSERT INTO `rts` (`id_rt`, `id_rw`, `user_entry`, `user_update`, `user_delete`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(0, 0, 'Fani7', NULL, 'Fani7', NULL, '2020-11-28 00:51:56', '2020-11-28 01:35:57');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rws`
+-- Struktur dari tabel `rws`
 --
 
 CREATE TABLE `rws` (
@@ -140,10 +147,17 @@ CREATE TABLE `rws` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `rws`
+--
+
+INSERT INTO `rws` (`id_rw`, `id_retribusi`, `user_entry`, `user_update`, `user_delete`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(0, 1, 'Fani7', NULL, NULL, NULL, '2020-11-27 03:45:34', '2020-11-27 03:45:34');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -165,83 +179,83 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `password`, `passwordnohash`, `id_rt`, `id_rw`, `roles`, `user_entry`, `user_update`, `user_delete`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Fani7', 'Fani Dwi Cahyo', '$2y$10$YlzFxLqD6i9UxfWmIZCJmOl/7V0prs0yeIW3eR02V/AxelM8jrfdi', 'fanidwicahyo', 1, 1, 'ADMIN', 'Fani', NULL, NULL, NULL, NULL, '2020-11-25 18:52:28', '2020-11-25 18:52:28');
+(1, 'Fani7', 'Fani Dwi Cahyo', '$2y$10$YlzFxLqD6i9UxfWmIZCJmOl/7V0prs0yeIW3eR02V/AxelM8jrfdi', 'fanidwicahyo', 0, 0, 'ADMIN', 'Fani', NULL, NULL, NULL, NULL, '2020-11-25 18:52:28', '2020-11-25 18:52:28');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `failed_jobs`
+-- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Indeks untuk tabel `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `retribusis`
+-- Indeks untuk tabel `retribusis`
 --
 ALTER TABLE `retribusis`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `rts`
+-- Indeks untuk tabel `rts`
 --
 ALTER TABLE `rts`
   ADD PRIMARY KEY (`id_rt`,`id_rw`);
 
 --
--- Indexes for table `rws`
+-- Indeks untuk tabel `rws`
 --
 ALTER TABLE `rws`
   ADD PRIMARY KEY (`id_rw`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_username_unique` (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `retribusis`
+-- AUTO_INCREMENT untuk tabel `retribusis`
 --
 ALTER TABLE `retribusis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
