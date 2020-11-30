@@ -21,12 +21,45 @@ class UserController extends Controller
      */
     public function index()
     {
+        $rts = Rt::where('id_rt','!=',0)->get();
+        $rws = Rw::where('id_rw','!=',0)->get();
         $item = User::with(['userrwrelasi','userrtrelasi'])->get();
 
         return view('pages.admin.user.index',[
-            'items' => $item
+            'items' => $item,
+            'rts' => $rts,
+            'rws' => $rws
         ]);
     }
+
+    public function cari(Request $request)
+	{
+		// menangkap data pencarian
+        $name = $request->name;
+        $rt = $request->id_rt;
+
+        // if (empty($name)){
+        //     $name="";
+        // }
+        // if (empty($rt)){
+        //     $rt="";
+        // }
+ 
+    	// mengambil data dari table pegawai sesuai pencarian data
+        $item = User::where('name','like',"%".$name."%")
+        ->where('id_rt','=',$rt)
+		->paginate();
+ 
+        $rts = Rt::where('id_rt','!=',0)->get();
+        $rws = Rw::where('id_rw','!=',0)->get();
+    		// mengirim data pegawai ke view index
+		return view('pages.admin.user.index',[
+            'items' => $item,
+            'rts' => $rts,
+            'rws' => $rws
+        ]);
+ 
+	}
 
     /**
      * Show the form for creating a new resource.

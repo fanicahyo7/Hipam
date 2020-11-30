@@ -41,7 +41,7 @@
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item {{ set_active(['tagihan.index']) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-cash-register"></i>
@@ -51,7 +51,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Transaksi:</h6>
-                <a class="collapse-item" href="#">Buat Tagihan</a>
+                <a class="collapse-item {{ set_active(['tagihan.index']) }}" href="{{ route('tagihan.index') }}">Buat Tagihan</a>
                 <a class="collapse-item" href="#">Bayar Tagihan</a>
             </div>
         </div>

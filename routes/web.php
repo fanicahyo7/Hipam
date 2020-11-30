@@ -32,7 +32,6 @@ Route::prefix('admin')
         Route::resource('retribusi', 'RetribusiController');
 
         Route::resource('rt', 'RtController');
-
         Route::get('rt_ubah/{id_rt}/id_rw/{id_rw}','RtController@edit')
         ->name('rt_ubah');
         Route::get('rt_hapus/{id_rt}/id_rw/{id_rw}','RtController@destroy')
@@ -40,5 +39,10 @@ Route::prefix('admin')
 
 
         Route::resource('rw', 'RwController');
+
         Route::resource('user', 'UserController');
+        Route::get('user_cari','UserController@cari')
+        ->name('user_cari');
+
+        Route::resource('tagihan', 'TagihanController');
     });

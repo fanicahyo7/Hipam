@@ -13,6 +13,19 @@
       <!-- Content Row -->
       <div class="row">
         <div class="card-body">
+            {{-- <form action="{{ route('user_cari') }}" method="GET">
+                <input type="text" class="small" name="name" aria-label="Search" aria-describedby="basic-addon2" placeholder="Cari Nama Pelanggan .." value="{{ old('name') }}">
+                <select name="id_rt" class="small">
+                    <option value="">Cari RT</option>
+                      @foreach ($rts as $rt)
+                        <option value="{{ $rt->id_rt }}">{{ $rt->id_rt }}</option>
+                      @endforeach
+                    </select>
+                    <button class="btn btn-primary small" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+            </form>
+            <br> --}}
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
