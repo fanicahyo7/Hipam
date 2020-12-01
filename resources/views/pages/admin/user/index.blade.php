@@ -5,27 +5,16 @@
         <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Master User</h1>
-          <a href="{{ route('user.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-              <i class="fas fa-plus fa-sm text-white-50"></i> Tambah User
-          </a>
       </div>
 
-      <!-- Content Row -->
-      <div class="row">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 ">
+                <a href="{{ route('user.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fas fa-plus fa-sm text-white-50"></i> Tambah User
+                </a>
+            </div>
         <div class="card-body">
-            {{-- <form action="{{ route('user_cari') }}" method="GET">
-                <input type="text" class="small" name="name" aria-label="Search" aria-describedby="basic-addon2" placeholder="Cari Nama Pelanggan .." value="{{ old('name') }}">
-                <select name="id_rt" class="small">
-                    <option value="">Cari RT</option>
-                      @foreach ($rts as $rt)
-                        <option value="{{ $rt->id_rt }}">{{ $rt->id_rt }}</option>
-                      @endforeach
-                    </select>
-                    <button class="btn btn-primary small" type="submit">
-                        <i class="fas fa-search fa-sm"></i>
-                    </button>
-            </form>
-            <br> --}}
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -52,15 +41,34 @@
                                 <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
-                                <form action="{{ route('user.destroy', $item->id) }}" method="post" class="d-inline">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger">
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#modalHapus">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                </form>
                             </td>
                         </tr>
+                        <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="modalHapus" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Apakah anda yakin menghapus?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="{{ route('user.destroy', $item->id) }}" method="post" class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-primary">Ya!</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @empty
                         <td colspan="7" class="text-center">
                             Data Kosong

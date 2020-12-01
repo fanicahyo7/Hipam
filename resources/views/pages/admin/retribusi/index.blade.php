@@ -41,16 +41,34 @@
                                 <a href="{{ route('retribusi.edit', $item->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
-                                <form action="{{ route('retribusi.destroy', $item->id) }}" method="post" class="d-inline">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger">
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#modalHapus">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                </form>
-
                             </td>
                         </tr>
+                        <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="modalHapus" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Apakah anda yakin menghapus?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="{{ route('retribusi.destroy', $item->id) }}" method="post" class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-primary">Ya!</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @empty
                         <td colspan="7" class="text-center">
                             Data Kosong
