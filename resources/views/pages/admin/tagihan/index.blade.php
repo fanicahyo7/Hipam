@@ -5,7 +5,7 @@
         <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Tagihan</h1>
-          <a href="{{ route('rt.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+          <a href="{{ route('tagihan.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
               <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Tagihan
           </a>
       </div>
@@ -31,10 +31,16 @@
                     <tbody>
                     @forelse($items as $item)
                         <tr>
-                            <td>{{ $item->id_rt }}</td>
-                            <td>{{ $item->rtrwrelasi->id_rw }}</td>
+                            <td>{{ $item->id_tagihan }}</td>
+                            <td>{{ $item->tagihanuserrelasi->name }}</td>
+                            <td>{{ $item->tagihanuserrelasi->rt }}</td>
+                            <td>{{ $item->tagihanuserrelasi->rw }}</td>
+                            <td>{{ $item->bulan + $item->Tahun }}</td>
+                            <td>{{ $item->pakai }}</td>
+                            <td>{{ $item->totaltagihan }}</td>
+                            <td>{{ $item->status }}</td>
                             <td>
-                                <form action="{{ route('rt_ubah', ['id_rt' => $item->id_rt,'id_rw' => $item->rtrwrelasi->id_rw]) }}" method="get" class="d-inline">
+                                {{-- <form action="{{ route('rt_ubah', ['id_rt' => $item->id_rt,'id_rw' => $item->rtrwrelasi->id_rw]) }}" method="get" class="d-inline">
                                     <button class="btn btn-info">
                                         <i class="fa fa-pencil-alt"></i>
                                     </button>
@@ -45,7 +51,7 @@
                                     <button class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                </form>
+                                </form> --}}
 
                             </td>
                         </tr>
