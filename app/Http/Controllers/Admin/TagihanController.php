@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use App\Tagihan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,7 +30,10 @@ class TagihanController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.tagihan.create');
+        $users = User::where('roles','=','PELANGGAN')->get();
+        return view('pages.admin.tagihan.create',[
+            'users' => $users
+        ]);
     }
 
     /**
