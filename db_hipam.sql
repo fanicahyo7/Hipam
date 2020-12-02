@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2020 at 09:08 AM
+-- Generation Time: Dec 02, 2020 at 09:42 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -105,7 +105,8 @@ CREATE TABLE `retribusis` (
 
 INSERT INTO `retribusis` (`id`, `retribusi_name`, `tarif1`, `tarif2`, `abonemen`, `kompensasi`, `user_entry`, `user_update`, `user_delete`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'Default', 0, 0, 0, 0, 'Fani7', 'Fani7', NULL, NULL, '2020-11-26 01:45:44', '2020-11-25 23:44:11'),
-(5, 'Retribusi 1', 235, 34346, 545, 235435, 'Fani7', NULL, NULL, NULL, '2020-11-29 21:04:17', '2020-11-29 21:04:17');
+(5, 'Retribusi 1', 235, 34346, 545, 235435, 'Fani7', NULL, NULL, NULL, '2020-11-29 21:04:17', '2020-11-29 21:04:17'),
+(6, 'dfgfhg', 4557, 678, 46, 57, 'Fani7', NULL, NULL, NULL, '2020-12-01 01:01:11', '2020-12-01 01:01:11');
 
 -- --------------------------------------------------------
 
@@ -168,6 +169,7 @@ CREATE TABLE `tagihans` (
   `id_user` int(11) NOT NULL,
   `bulan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tahun` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `periode` date NOT NULL,
   `metersekarang` int(11) NOT NULL,
   `metersebelumnya` int(11) NOT NULL,
   `pakai` int(11) NOT NULL,
@@ -267,7 +269,7 @@ ALTER TABLE `rws`
 -- Indexes for table `tagihans`
 --
 ALTER TABLE `tagihans`
-  ADD PRIMARY KEY (`id_tagihan`,`id_user`,`bulan`,`tahun`);
+  ADD PRIMARY KEY (`id_tagihan`,`id_user`,`periode`);
 
 --
 -- Indexes for table `users`
@@ -296,7 +298,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `retribusis`
 --
 ALTER TABLE `retribusis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tagihans`
