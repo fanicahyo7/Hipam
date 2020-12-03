@@ -44,9 +44,9 @@
                         <input type="text" readonly class="form-control" id="id_rw" name="id_rw" placeholder="RW" value="{{ old('id_rw') }}">
                     </div>
                     <div class="form-group">
-                        <label for="datepicker">Periode</label>
-                        <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
-                            <input class="form-control" type="text" readonly />
+                        <label for="periode">Periode</label>
+                        <div id="periode" class="input-group date" data-date-format="mm-dd-yyyy">
+                            <input class="form-control" type="text" readonly id="periode" />
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </div>
@@ -74,16 +74,20 @@
                             ?>
                     </div> --}}
                     <div class="form-group">
+                        <label for="meter">Meter</label>
+                        <input type="text" class="meter" readonly class="form-control" name="meter" placeholder="Meter" value="{{ old('meter') }}">
+                    </div>
+                    <div class="form-group">
                         <label for="metersebelumnya">Meter Sebelumnya</label>
-                        <input type="number" readonly class="form-control" name="metersebelumnya" placeholder="Meter Sebelumnya" value="{{ old('metersebelumnya') }}">
+                        <input type="number" readonly class="metersebelumnya form-control" name="metersebelumnya" placeholder="Meter Sebelumnya" value="{{ old('metersebelumnya') }}">
                     </div>
                     <div class="form-group">
                         <label for="metersekarang">Meter Sekarang</label>
-                        <input type="number" class="form-control" name="metersekarang" placeholder="Meter Sekarang" value="{{ old('metersekarang') }}">
+                        <input type="number" class="metersekarag form-control" oninput="hitung();" name="metersekarang" placeholder="Meter Sekarang" value="{{ old('metersekarang') }}">
                     </div>
                     <div class="form-group">
                         <label for="rekeningpakaiair">Volume Pakai</label>
-                        <input type="number" readonly class="form-control" name="rekeningpakaiair" placeholder="Volume Pakai" value="{{ old('rekeningpakaiair') }}">
+                        <input type="number" readonly class="rekeningpakaiair form-control" name="rekeningpakaiair" placeholder="Volume Pakai" value="{{ old('rekeningpakaiair') }}">
                     </div>
                     <div class="form-group">
                         <label for="denda">Denda</label>
@@ -154,9 +158,20 @@
                 $(document).ready(function() {
                     //focusin berfungsi ketika cursor berada di dalam textbox modal langsung aktif
                 $(".pencarian").focusin(function() {
-                $("#modalCari").modal('show'); // ini fungsi untuk menampilkan modal
+                    $("#modalCari").modal('show'); // ini fungsi untuk menampilkan modal
                 });
                 $('#example').DataTable(); // fungsi ini untuk memanggil datatable
+
+
+                // Search by userid
+                $('#periode').click(function(){
+                    var username = String($('#username').val().trim());
+                    // var periode = Date($('#periode').val().trim());
+
+                    if(userid.length > 0){
+                        fetchRecords(username);
+                    }
+                });
             });
             
             // function in berfungsi untuk memindahkan data kolom yang di klik menuju text box
@@ -168,16 +183,50 @@
                 document.getElementById('id_rw').value = id_rw;
                 $("#modalCari").modal('hide'); // ini berfungsi untuk menyembunyikan modal
             }
+
+            function fetchRecords(username){
+                var url = "{{URL('userData')}}"
+                $.ajax({
+                    url: '/tagihan/ambilMeter/' + username,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response){
+
+                    var len = 0;
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+
+                    if(len > 0){
+                        var id = response['data'][0].id_tagihan;
+                        $(".meter").val(id);
+                    }else{
+                        var id = 0;
+                        $(".meter").val(id);
+                    }
+                }
+            }
+        );}
+
+        function hitung() {
+            var a = $(".metersebelumnya").val();
+            var b = $(".metersekarang").val();
+            c = b - a; //a kali b
+            $(".rekeningpakaiair").val(c);
+            console.log(a);
+            console.log(b);
+  }
+
           </script>
-
-
             <script>
                 $(function () {
-                $("#datepicker").datepicker({ 
-                    format: "MM-yyyy",
-                    startView: "months", 
-                    minViewMode: "months"
-                }).datepicker('update', new Date());
+                    $("#periode").datepicker({ 
+                        format: "yyyy-MM",
+                        startView: "months", 
+                        minViewMode: "months",
+                        todayHighlight:'TRUE',
+                        autoclose: true,
+                    }).datepicker('update', new Date());
                 });
             </script>
       @endpush

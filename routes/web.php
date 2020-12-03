@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.welcome');
+    return view('pages.home');
 });
 
 Auth::routes([
@@ -45,4 +45,6 @@ Route::prefix('admin')
         ->name('user_cari');
 
         Route::resource('tagihan', 'TagihanController');
+        Route::get('tagihan/ambilMeter/{username}', 'TagihanController@ambilMeterlama')
+        ->name('tagihan/ambilMeter');
     });

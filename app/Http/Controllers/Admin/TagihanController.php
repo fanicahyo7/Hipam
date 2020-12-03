@@ -36,6 +36,13 @@ class TagihanController extends Controller
         ]);
     }
 
+    public function ambilMeterlama($username){
+        $meter = Tagihan::where('username','=',$username)
+        // ->where('periode','=',$periode)
+        ->first();
+        return json_encode(array('data'=>$meter));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
