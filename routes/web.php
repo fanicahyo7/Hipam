@@ -47,4 +47,6 @@ Route::prefix('admin')
         Route::resource('tagihan', 'TagihanController');
         Route::get('tagihan/ambilMeter/{username}', 'TagihanController@ambilMeterlama')
         ->name('tagihan/ambilMeter');
+
+        Route::resource('cobaa', 'CobaController');
     });

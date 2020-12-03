@@ -21,7 +21,7 @@
           @endif
           <div class="card shadow">
               <div class="card-body">
-                  <form action="{{ route('tagihan.store') }}" method="post">
+                  <form id="formD" name="formD" action="{{ route('tagihan.store') }}" method="post">
                       @csrf
                     <div class="form-group">
                         <label for="id_user">ID User</label>
@@ -79,15 +79,15 @@
                     </div>
                     <div class="form-group">
                         <label for="metersebelumnya">Meter Sebelumnya</label>
-                        <input type="number" readonly class="metersebelumnya form-control" name="metersebelumnya" placeholder="Meter Sebelumnya" value="{{ old('metersebelumnya') }}">
+                        <input type="number" class="form-control" onkeyup="OnChangeMeter(this.value)" id="metersebelumnya" name="metersebelumnya" placeholder="Meter Sebelumnya" value=7>
                     </div>
                     <div class="form-group">
                         <label for="metersekarang">Meter Sekarang</label>
-                        <input type="number" class="metersekarag form-control" oninput="hitung();" name="metersekarang" placeholder="Meter Sekarang" value="{{ old('metersekarang') }}">
+                        <input type="number" class="form-control" onkeyup="OnChangeMeter(this.value)" id="metersekarag" name="metersekarang" placeholder="Meter Sekarang" value="{{ old('metersekarang') }}">
                     </div>
                     <div class="form-group">
                         <label for="rekeningpakaiair">Volume Pakai</label>
-                        <input type="number" readonly class="rekeningpakaiair form-control" name="rekeningpakaiair" placeholder="Volume Pakai" value="{{ old('rekeningpakaiair') }}">
+                        <input type="number" class="form-control" id="rekeningpakaiair" name="rekeningpakaiair" placeholder="Volume Pakai" value="{{ old('rekeningpakaiair') }}">
                     </div>
                     <div class="form-group">
                         <label for="denda">Denda</label>
@@ -208,14 +208,17 @@
             }
         );}
 
-        function hitung() {
-            var a = $(".metersebelumnya").val();
-            var b = $(".metersekarang").val();
-            c = b - a; //a kali b
-            $(".rekeningpakaiair").val(c);
-            console.log(a);
-            console.log(b);
-  }
+        function OnChangeMeter(value){
+        // hargasatuan = document.formD.harga.value;
+        var a;
+        // console.log(document.getElementById('metersekarang').value);
+        if (document.getElementById('metersekarang').value == null){a=0;}else{a=document.getElementById('metersekarang').value;}
+        metersekarang = a;
+        metersebelumnya = document.getElementById('metersebelumnya').value;
+        // jumlah = document.formD.jmlpsn.value;
+        total = metersekarang * metersebelumnya;
+        document.formD.rekeningpakaiair.value = total;
+    }
 
           </script>
             <script>
