@@ -24,7 +24,7 @@ class RetribusiRequest extends FormRequest
     public function rules()
     {
         return [
-            'retribusi_name' => 'required|unique:retribusis|max:255',
+            'retribusi_name' => 'required|max:255',
             'tarif1' => 'required|integer',
             'tarif2' => 'required|integer',
             'abonemen' => 'required|integer',

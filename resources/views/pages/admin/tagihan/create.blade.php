@@ -65,12 +65,16 @@
                     <div class="form-group">
                     <div class="row">
                         <div class="col-md-3 mb-3">
-                            <label for="tarif1">Tarif 1 (Pakai <= 20 Rp.)</label>
+                            <label for="tarif1">Tarif 1</label>
                             <input type="text" readonly class="form-control" id="tarif1" name="tarif1">
+                            <label for="jtarif1">Jumlah Tarif 1</label>
+                            <input type="text" readonly class="form-control" id="jtarif1" name="jtarif1">
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="tarif2">Tarif 2 (Pakai > 20 Rp.)</label>
+                            <label for="tarif2">Tarif 2</label>
                             <input type="text" readonly class="form-control" id="tarif2" name="tarif2">
+                            <label for="jtarif2">Jumlah Tarif 2</label>
+                            <input type="text" readonly class="form-control" id="jtarif2" name="jtarif2">
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="abonemen">Abonemen</label>
@@ -112,13 +116,6 @@
             </div>
               <div class="modal-body">
                  <table id="example" class="table table-bordered">
-                    <colgroup>
-                        <col class="usename"/>
-                        {{-- <col class="tarif1x"/>
-                        <col class="tarif2x"/>
-                        <col class="abonemenx"/>
-                        <col class="kompensasix"/> --}}
-                     </colgroup>
                     <thead>
                         <tr>
                             <th class="id">ID User</th>
@@ -126,24 +123,27 @@
                             <th class="nama">Nama</th>
                             <th class="rt">RT</th>
                             <th class="rw">RW</th>
-                            {{-- <th class="tarif1x">Tarif 1</th>
+                            <th class="tarif1x">Tarif 1</th>
                             <th class="tarif2x">Tarif 2</th>
                             <th class="abonemenx">Abonemen</th>
-                            <th class="kompensasix">Kompensasi</th> --}}
+                            <th class="kompensasix">Kompensasi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($users as $user)
                         <tr>
-                                <td><a id="id" onClick="masuk(this,'{{ $user->id }}','{{ $user->username }}','{{ $user->name }}','{{ $user->id_rt }}','{{ $user->id_rw }}')" href="javascript:void(0)">{{ $user->id }}</a></td>
+                                <td><a id="id" onClick="masuk(this,
+                                    '{{ $user->id }}','{{ $user->username }}','{{ $user->name }}','{{ $user->id_rt }}','{{ $user->id_rw }}',
+                                    '{{ $user->tarif1 }}','{{ $user->tarif2 }}','{{ $user->abonemen }}','{{ $user->kompensasi }}'
+                                    )" href="javascript:void(0)">{{ $user->id }}</a></td>
                                 <td>{{ $user->username }}</a></td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->id_rt }}</td>
                                 <td>{{ $user->id_rw }}</td>
-                                {{-- <td>{{ $user->tarif1 }}</td>
+                                <td>{{ $user->tarif1 }}</td>
                                 <td>{{ $user->tarif2 }}</td>
                                 <td>{{ $user->abonemen }}</td>
-                                <td>{{ $user->kompensasi }}</td> --}}
+                                <td>{{ $user->kompensasi }}</td>
                             </tr>
                         @empty
                         <tr>
@@ -168,7 +168,30 @@
                 $(".pencarian").focusin(function() {
                     $("#modalCari").modal('show'); // ini fungsi untuk menampilkan modal
                 });
-                $('#example').DataTable(); // fungsi ini untuk memanggil datatable
+                $('#example').DataTable({
+                    "columnDefs": [
+                        {
+                            "targets": [ 5 ],
+                            "visible": false,
+                            "searchable": false
+                        },
+                        {
+                            "targets": [ 6 ],
+                            "visible": false,
+                            "searchable": false
+                        },
+                        {
+                            "targets": [ 7 ],
+                            "visible": false,
+                            "searchable": false
+                        },
+                        {
+                            "targets": [ 8 ],
+                            "visible": false,
+                            "searchable": false
+                        },
+                    ]
+                }); // fungsi ini untuk memanggil datatable
 
 
                 // Search by userid
@@ -183,12 +206,16 @@
             });
             
             // function in berfungsi untuk memindahkan data kolom yang di klik menuju text box
-            function masuk(txt, id, username, name, id_rt, id_rw) {
+            function masuk(txt, id, username, name, id_rt, id_rw, tarif1, tarif2, abonemen, kompensasi) {
                 document.getElementById('id_user').value = id; // ini berfungsi mengisi value  yang ber id textbox
                 document.getElementById('username').value = username;
                 document.getElementById('name').value = name;
                 document.getElementById('id_rt').value = id_rt;
                 document.getElementById('id_rw').value = id_rw;
+                document.getElementById('tarif1').value = tarif1;
+                document.getElementById('tarif2').value = tarif2;
+                document.getElementById('abonemen').value = abonemen;
+                document.getElementById('kompensasi').value = kompensasi;
                 $("#modalCari").modal('hide'); // ini berfungsi untuk menyembunyikan modal
             }
 
@@ -234,6 +261,14 @@
             metersekarang = document.getElementById('metersekarang').value;
             total = metersekarang - metersebelumnya;
             document.formD.rekeningpakaiair.value = total;
+
+            var jmltarif1;
+            var jmltarif2;
+            if (total > 0){
+                
+            }else{
+
+            }
         }
     </script>
       @endpush
