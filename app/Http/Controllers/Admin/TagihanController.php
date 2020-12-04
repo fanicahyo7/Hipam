@@ -30,7 +30,9 @@ class TagihanController extends Controller
      */
     public function create()
     {
-        $users = User::where('roles','=','PELANGGAN')->get();
+        $users = User::leftJoin('rws','users.id_rw','=','rws.id_rw')
+        ->leftJoin('retribusis','retribusis.id','=','rws.id_retribusi')
+        ->where('users.roles','=','PELANGGAN')->get();
         return view('pages.admin.tagihan.create',[
             'users' => $users
         ]);

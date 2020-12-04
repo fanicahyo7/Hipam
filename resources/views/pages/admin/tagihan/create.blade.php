@@ -21,7 +21,7 @@
           @endif
           <div class="card shadow">
               <div class="card-body">
-                  <form id="formD" name="formD" action="{{ route('tagihan.store') }}" method="post">
+                  <form action="{{ route('tagihan.store') }}" method="post" id="formD" name="formD">
                       @csrf
                     <div class="form-group">
                         <label for="id_user">ID User</label>
@@ -50,44 +50,37 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="bulan">Periode</label>
-                        <select name="bulan">
-                            <option selected="selected">Bulan</option>
-                            <?php
-                            $bulan=array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-                            $jlh_bln=count($bulan);
-                            for($c=0; $c<$jlh_bln; $c+=1){
-                                echo"<option value=$bulan[$c]> $bulan[$c] </option>";
-                            }
-                            ?>
-                            </select>
-
-                            <?php
-                                $now=date('Y');
-                                echo "<select name=’tahun’>";
-                                for ($a=2020;$a<=$now;$a++)
-                                {
-                                    echo "<option value='$a'>$a</option>";
-                                }
-                                echo "</select>";
-                            ?>
-                    </div> --}}
-                    <div class="form-group">
-                        <label for="meter">Meter</label>
-                        <input type="text" class="meter" readonly class="form-control" name="meter" placeholder="Meter" value="{{ old('meter') }}">
-                    </div>
                     <div class="form-group">
                         <label for="metersebelumnya">Meter Sebelumnya</label>
-                        <input type="number" class="form-control" onkeyup="OnChangeMeter(this.value)" id="metersebelumnya" name="metersebelumnya" placeholder="Meter Sebelumnya" value=7>
+                        <input type="number" readonly class="form-control" id="metersebelumnya" name="metersebelumnya" onkeyup="OnChange(this.value)" value=1900>
                     </div>
                     <div class="form-group">
                         <label for="metersekarang">Meter Sekarang</label>
-                        <input type="number" class="form-control" onkeyup="OnChangeMeter(this.value)" id="metersekarag" name="metersekarang" placeholder="Meter Sekarang" value="{{ old('metersekarang') }}">
+                        <input type="number" class="form-control" id="metersekarang" name="metersekarang" onkeyup="OnChange(this.value)">
                     </div>
                     <div class="form-group">
                         <label for="rekeningpakaiair">Volume Pakai</label>
-                        <input type="number" class="form-control" id="rekeningpakaiair" name="rekeningpakaiair" placeholder="Volume Pakai" value="{{ old('rekeningpakaiair') }}">
+                        <input type="number" readonly class="form-control" id="rekeningpakaiair" name="rekeningpakaiair" placeholder="Volume Pakai" value="{{ old('rekeningpakaiair') }}">
+                    </div>
+                    <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="tarif1">Tarif 1 (Pakai <= 20 Rp.)</label>
+                            <input type="text" readonly class="form-control" id="tarif1" name="tarif1">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="tarif2">Tarif 2 (Pakai > 20 Rp.)</label>
+                            <input type="text" readonly class="form-control" id="tarif2" name="tarif2">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="abonemen">Abonemen</label>
+                            <input type="text" readonly class="form-control" id="abonemen" name="abonemen">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="kompensasi">Kompensasi</label>
+                            <input type="text" readonly class="form-control" id="kompensasi" name="kompensasi">
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                         <label for="denda">Denda</label>
@@ -119,13 +112,24 @@
             </div>
               <div class="modal-body">
                  <table id="example" class="table table-bordered">
+                    <colgroup>
+                        <col class="usename"/>
+                        {{-- <col class="tarif1x"/>
+                        <col class="tarif2x"/>
+                        <col class="abonemenx"/>
+                        <col class="kompensasix"/> --}}
+                     </colgroup>
                     <thead>
                         <tr>
-                            <th>ID User</th>
-                            <th>Username</th>
-                            <th>Nama</th>
-                            <th>RT</th>
-                            <th>RW</th>
+                            <th class="id">ID User</th>
+                            <th class="usename">Username</th>
+                            <th class="nama">Nama</th>
+                            <th class="rt">RT</th>
+                            <th class="rw">RW</th>
+                            {{-- <th class="tarif1x">Tarif 1</th>
+                            <th class="tarif2x">Tarif 2</th>
+                            <th class="abonemenx">Abonemen</th>
+                            <th class="kompensasix">Kompensasi</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -136,6 +140,10 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->id_rt }}</td>
                                 <td>{{ $user->id_rw }}</td>
+                                {{-- <td>{{ $user->tarif1 }}</td>
+                                <td>{{ $user->tarif2 }}</td>
+                                <td>{{ $user->abonemen }}</td>
+                                <td>{{ $user->kompensasi }}</td> --}}
                             </tr>
                         @empty
                         <tr>
@@ -207,19 +215,6 @@
                 }
             }
         );}
-
-        function OnChangeMeter(value){
-        // hargasatuan = document.formD.harga.value;
-        var a;
-        // console.log(document.getElementById('metersekarang').value);
-        if (document.getElementById('metersekarang').value == null){a=0;}else{a=document.getElementById('metersekarang').value;}
-        metersekarang = a;
-        metersebelumnya = document.getElementById('metersebelumnya').value;
-        // jumlah = document.formD.jmlpsn.value;
-        total = metersekarang * metersebelumnya;
-        document.formD.rekeningpakaiair.value = total;
-    }
-
           </script>
             <script>
                 $(function () {
@@ -232,5 +227,14 @@
                     }).datepicker('update', new Date());
                 });
             </script>
+
+    <script type="text/javascript" language="Javascript">
+        function OnChange(value){
+            metersebelumnya = document.getElementById('metersebelumnya').value;
+            metersekarang = document.getElementById('metersekarang').value;
+            total = metersekarang - metersebelumnya;
+            document.formD.rekeningpakaiair.value = total;
+        }
+    </script>
       @endpush
 @endsection
